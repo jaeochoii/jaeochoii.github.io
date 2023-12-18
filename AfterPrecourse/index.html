@@ -74,86 +74,74 @@
 <h2 id="한-메서드에-오직-한-단계의-들여-쓰기만-한다" style="position:relative;"><a href="#%ED%95%9C-%EB%A9%94%EC%84%9C%EB%93%9C%EC%97%90-%EC%98%A4%EC%A7%81-%ED%95%9C-%EB%8B%A8%EA%B3%84%EC%9D%98-%EB%93%A4%EC%97%AC-%EC%93%B0%EA%B8%B0%EB%A7%8C-%ED%95%9C%EB%8B%A4" aria-label="한 메서드에 오직 한 단계의 들여 쓰기만 한다 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>한 메서드에 오직 한 단계의 들여 쓰기만 한다.</h2>
 <p>한 메서드가 깊어진다는 것은 하나의 메서드가 하나의 기능을 하지 못할 확률이 높다. 또한 깊이가 깊어진다는 것은 곧 가독성의 하락을 불러온다. <strong>메서드의 길이가 길어질 것 같으면 해당 메서드를 여러 개로 분리하면 해결할 수 있다.</strong> 4주차까지 유일하게 잘 지켜온 부분이라 생각이 들었지만 4주차 크리스마스 미션 <code class="language-text">PromotionController</code> 에서 그 생각은 와장창 깨져버렸다.</p>
 <h3 id="-입력값-예외-처리-부분에서-적용-실패" style="position:relative;"><a href="#-%EC%9E%85%EB%A0%A5%EA%B0%92-%EC%98%88%EC%99%B8-%EC%B2%98%EB%A6%AC-%EB%B6%80%EB%B6%84%EC%97%90%EC%84%9C-%EC%A0%81%EC%9A%A9-%EC%8B%A4%ED%8C%A8" aria-label=" 입력값 예외 처리 부분에서 적용 실패 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>🧨 입력값 예외 처리 부분에서 적용 실패</h3>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">// 크리스마스 프로모션 _ PromotionController
-...
-async #inputVisitDate() {
-  while (true) {
-    try {
-      return await InputView.readDate();
-    } catch (error) {
-      Console.print(error.message);
-    }
-  }
-}
-...</code>
-        </deckgo-highlight-code>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// 크리스마스 프로모션 _ PromotionController</span>
+<span class="token operator">...</span>
+async <span class="token function">#inputVisitDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">await</span> InputView<span class="token punctuation">.</span><span class="token function">readDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      Console<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token operator">...</span></code></pre></div>
 <p><em>입력값을 받고 유효성 검사한 후 예외 처리 메시지를 출력한다. 추가적으로 프로그램을 종료시키지 않고 재입력을 받아야 한다.</em></p>
 <p>전자까지는 잘 지켜졌지만, 입력값을 잘못 입력했을 때 다시 입력받는 과정이 추가되면서 메서드가 너무 깊어졌다. 처음에는 while문 대신 재귀로 함수를 받았는데, 오류 값이 지속적으로 입력될 때 차지하는 메모리의 용량이 너무 커졌다. 그래서 while문을 적용하였지만…더 나은 방법이 있을까?</p>
 <h3 id="-해결-방안" style="position:relative;"><a href="#-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EC%95%88" aria-label=" 해결 방안 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>💎 해결 방안</h3>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">  async #inputVisitDate() {
-    let date = null;
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">  async <span class="token function">#inputVisitDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> date <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
 
-    while (date === null) {
-      date = await this.#handleInputDate();
-    }
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>date <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      date <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">#handleInputDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    return date;
-  }
+    <span class="token keyword">return</span> date<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  async #handleInputDate() {
-    try {
-      return await InputView.readDate();
-    } catch (error) {
-      Console.print(error.message);
-      return null;
-    }
-  }</code>
-        </deckgo-highlight-code>
+  async <span class="token function">#handleInputDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">await</span> InputView<span class="token punctuation">.</span><span class="token function">readDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      Console<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span></code></pre></div>
 <p>두 개의 메서드로 분리하게 된다면 위 문제를 해결할 수 있다. 사실 전반적인 코드의 길이는 길어지긴 했지만 가독성 측면에서 매우 깔끔해진 것을 확인할 수 있다.</p>
 <h2 id="모든-원시값은-문자열을-포장한다" style="position:relative;"><a href="#%EB%AA%A8%EB%93%A0-%EC%9B%90%EC%8B%9C%EA%B0%92%EC%9D%80-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%84-%ED%8F%AC%EC%9E%A5%ED%95%9C%EB%8B%A4" aria-label="모든 원시값은 문자열을 포장한다 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>모든 원시값은 문자열을 포장한다.</h2>
 <h3 id="-유지-보수-잘할-수-있겠니" style="position:relative;"><a href="#-%EC%9C%A0%EC%A7%80-%EB%B3%B4%EC%88%98-%EC%9E%98%ED%95%A0-%EC%88%98-%EC%9E%88%EA%B2%A0%EB%8B%88" aria-label=" 유지 보수 잘할 수 있겠니 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>🧨 유지 보수 잘할 수 있겠니…?</h3>
 <p>텍스트만으로는 이해하기 쉽지 않다. 4주차 미션이었던 <code class="language-text">크리스마스 프로모션</code> 문제를 예로 설명해보자. 우선 총 금액을 아래와 같이 새로운 변수에 할당하였다.</p>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">const totalMoney = 123_000;</code>
-        </deckgo-highlight-code>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> totalMoney <span class="token operator">=</span> <span class="token number">123_000</span><span class="token punctuation">;</span></code></pre></div>
 <p>해당 금액으로 증정 상품 제공 여부도 파악해야 하고, <code class="language-text">10,000</code> 원이 넘는 금액인 지도 파악해야 한다. 그러면 아래와 같은 코드가 나올 것이다.</p>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">if (totalMoney &gt;= 10_000) true;
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">if</span> <span class="token punctuation">(</span>totalMoney <span class="token operator">>=</span> <span class="token number">10_000</span><span class="token punctuation">)</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
 
-const giveAwayCount = Math.floor(totalMoney / 25_000);</code>
-        </deckgo-highlight-code>
+<span class="token keyword">const</span> giveAwayCount <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>totalMoney <span class="token operator">/</span> <span class="token number">25_000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p><code class="language-text">totalMoney</code> 변수가 이곳 저곳에서 쓰이고 있다. 만약에 <code class="language-text">totalAmount</code> 값을 유효성 검사하는 곳에도 사용한다면 중복된 값을 가진 변수가 코드 곳곳에 흩어지는 현상이 발생할 것이다. 만약에 코드를 수정해야 한다면 여러 곳을 찾아봐야 해서 유지보수가 힘들어진다.</p>
 <h3 id="-해결-방안-1" style="position:relative;"><a href="#-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EC%95%88-1" aria-label=" 해결 방안 1 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>💎 해결 방안</h3>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">class TotalAmount {
-  #menu;
-  #totalAmount;
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">TotalAmount</span> <span class="token punctuation">{</span>
+  #menu<span class="token punctuation">;</span>
+  #totalAmount<span class="token punctuation">;</span>
 
-  constructor(menus) {
-    this.#totalAmount;
-    this.#calculateAmount(menus);
-  }
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">menus</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>#totalAmount<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">#calculateAmount</span><span class="token punctuation">(</span>menus<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  #calculateAmount(menus) {...}
+  <span class="token function">#calculateAmount</span><span class="token punctuation">(</span><span class="token parameter">menus</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-  getTotalAmount() {
-    return this.#totalAmount;
-  }
+  <span class="token function">getTotalAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>#totalAmount<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  getGiveawayCount() {
-    return Math.floor(this.#totalAmount / NUMBER.champagne);
-  }
-}</code>
-        </deckgo-highlight-code>
+  <span class="token function">getGiveawayCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>#totalAmount <span class="token operator">/</span> <span class="token constant">NUMBER</span><span class="token punctuation">.</span>champagne<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>프리코스 내내 수도 없이 강조했던 능동적인 객체의 첫걸음은 행동하는 객체이다. 도메인의 역할이 오직 값만 가져오는 것이 아니라 객체에 책임과 역할을 부여하며 캡슐화하는 것이다.</p>
 <p><code class="language-text">TotalAmount</code> 라는 클래스를 생성하여 원시값을 포장하였다. 해당 객체 안에서는 유효성 검사를 할 수도 있고, 총 금액 계산, 증정 메뉴 개수 카운트 등 여러 작업을 수행할 수 있다. 그리고 계산된 값만이 반환된다.</p>
 <p>변수가 여러 곳에 흩어지지 않고 해당 <code class="language-text">TotalAmount</code> 클래스 안에서만 구현하여 비즈니스 로직이 하나의 객체로 응집되었다. 이정도면 충분히 능동적인 행동을 하는 객체다운 객체를 생성한 것 같다.</p>
 <h2 id="한-줄에-점을-하나만-찍는다" style="position:relative;"><a href="#%ED%95%9C-%EC%A4%84%EC%97%90-%EC%A0%90%EC%9D%84-%ED%95%98%EB%82%98%EB%A7%8C-%EC%B0%8D%EB%8A%94%EB%8B%A4" aria-label="한 줄에 점을 하나만 찍는다 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>한 줄에 점을 하나만 찍는다.</h2>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">User.getMoney().getGiveawayCount(); // ❌</code>
-        </deckgo-highlight-code>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">User<span class="token punctuation">.</span><span class="token function">getMoney</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getGiveawayCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ❌</span></code></pre></div>
 <p>위와 같이 객체에 접근할 때 <code class="language-text">.</code> 을 두번 이상 찍으면 안된다.</p>
 <p>와… 이건 사실 좀 심화된 내용을 다루는 것 같아서 어려웠다. 흠… 의도한 것은 아니었지만 지난 4주간의 코드를 살펴보니 위 규칙을 어긴 코드는 없었다.</p>
 <p>처음에는 <code class="language-text">.</code> 을 하나만 찍으라는 것이 map 함수나 reduce 함수를 여러 번 사용하는 것도 해당되나..? 생각했지만 객체의 결합도가 높아져 결합도가 강해지는 것을 막는 것이 목표라고 한다.</p>
@@ -162,79 +150,71 @@ const giveAwayCount = Math.floor(totalMoney / 25_000);</code>
 <p>모든 엔티티를 작게 유지한다는 것은 50줄이 넘는 클래스와, 파일이 10개 이상인 패키지를 지양하는 원칙이다. 보통 코드의 길이가 50줄이 넘는 클래스는 한 가지의 일이 아닌 그 이상의 일을 하고있을 확률이 높으며, 무슨 일을 하고 있는지도 정확히 파악이 어려워진다.</p>
 <h3 id="-삐빕-50줄을-초과하였습니다" style="position:relative;"><a href="#-%EC%82%90%EB%B9%95-50%EC%A4%84%EC%9D%84-%EC%B4%88%EA%B3%BC%ED%95%98%EC%98%80%EC%8A%B5%EB%8B%88%EB%8B%A4" aria-label=" 삐빕 50줄을 초과하였습니다 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>🧨 삐빕! 50줄을 초과하였습니다</h3>
 <p>흠… 맞는 말이다. 실제로 4주차 미션에서 <code class="language-text">BenefitAmount</code> 클래스는 70줄이 넘는다. 코드를 작성하면서도 너무 길다는 생각을 안한 것은 아니다. 혜택을 정리하고 계산하는 작업 자체가 코드가 길어질 수 밖에 없기 때문에 충분히 가능하다고 스스로 합리화 하였다.</p>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">class BenefitAmount {
-  #benefitList;
-  #totalAmount;
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">BenefitAmount</span> <span class="token punctuation">{</span>
+  #benefitList<span class="token punctuation">;</span>
+  #totalAmount<span class="token punctuation">;</span>
 
-  constructor(props) {...}
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-  #calculateDDayAmount() {...}
+  <span class="token function">#calculateDDayAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-  #calculateWeekendAmount(order) {...}
+  <span class="token function">#calculateWeekendAmount</span><span class="token punctuation">(</span><span class="token parameter">order</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-  #calculateWeekAmount(order) {...}
+  <span class="token function">#calculateWeekAmount</span><span class="token punctuation">(</span><span class="token parameter">order</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-  getBenefitList() {...}
+  <span class="token function">getBenefitList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-  getBenefitAmount() {...}
+  <span class="token function">getBenefitAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-export default BenefitAmount;
-</code>
-        </deckgo-highlight-code>
+<span class="token keyword">export</span> <span class="token keyword">default</span> BenefitAmount<span class="token punctuation">;</span>
+</code></pre></div>
 <p>기능을 제대로 구현하지도 않았는데 벌써부터 읽기 싫어진다. 2개의 클래스로 분리가 가능할 것 같아서 살펴보니 <code class="language-text">BenefitAmountCalculator</code> 라는 클래스와 <code class="language-text">BenefitAmountManager</code> 라는 클래스로 나누어 전자에서 계산된 값을 후자에서 상속받아 사용하면 클래스의 기능적 무게가 훨씬 가벼워질 것 같다.</p>
 <h3 id="-해결-방안-2" style="position:relative;"><a href="#-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EC%95%88-2" aria-label=" 해결 방안 2 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>💎 해결 방안</h3>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">// 총금액을 계산하는 클래스
-class BenefitAmountCalculator {
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// 총금액을 계산하는 클래스</span>
+<span class="token keyword">class</span> <span class="token class-name">BenefitAmountCalculator</span> <span class="token punctuation">{</span>
 
-  #calculateGiveaway() {...}
+  <span class="token function">#calculateGiveaway</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-  #calculateDDayAmount() {...}
+  <span class="token function">#calculateDDayAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-  #calculateWeekendAmount(order) {...}
+  <span class="token function">#calculateWeekendAmount</span><span class="token punctuation">(</span><span class="token parameter">order</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-  #calculateWeekAmount(order) {...}
+  <span class="token function">#calculateWeekAmount</span><span class="token punctuation">(</span><span class="token parameter">order</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-export default BenefitAmount;
-</code>
-        </deckgo-highlight-code>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">// 총금액을 관리하는 클래스
+<span class="token keyword">export</span> <span class="token keyword">default</span> BenefitAmount<span class="token punctuation">;</span>
+</code></pre></div>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// 총금액을 관리하는 클래스</span>
 
-import BenefitCalculator from &quot;./BenefitCalculator.js&quot;;
+<span class="token keyword">import</span> BenefitCalculator <span class="token keyword">from</span> <span class="token string">"./BenefitCalculator.js"</span><span class="token punctuation">;</span>
 
-class BenefitAmountManager {
-  #benefitList;
-  #totalAmount;
+<span class="token keyword">class</span> <span class="token class-name">BenefitAmountManager</span> <span class="token punctuation">{</span>
+  #benefitList<span class="token punctuation">;</span>
+  #totalAmount<span class="token punctuation">;</span>
 
-  constructor(props) {...}
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-  getBenefitList() {...}
+  <span class="token function">getBenefitList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-  getBenefitAmount() {...}
+  <span class="token function">getBenefitAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
 
-}</code>
-        </deckgo-highlight-code>
+<span class="token punctuation">}</span></code></pre></div>
 <h2 id="2개를-초과하는-인스턴스-변수를-가진-클래스를-쓰지-않는다" style="position:relative;"><a href="#2%EA%B0%9C%EB%A5%BC-%EC%B4%88%EA%B3%BC%ED%95%98%EB%8A%94-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%B3%80%EC%88%98%EB%A5%BC-%EA%B0%80%EC%A7%84-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%A5%BC-%EC%93%B0%EC%A7%80-%EC%95%8A%EB%8A%94%EB%8B%A4" aria-label="2개를 초과하는 인스턴스 변수를 가진 클래스를 쓰지 않는다 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2개를 초과하는 인스턴스 변수를 가진 클래스를 쓰지 않는다.</h2>
 <p>인스턴스 변수가 많아질수록 클래스의 응집도는 낮아진다는 것을 의미한다. 클래스는 <code class="language-text">하나의 상태를 유지하고 관리하는 것</code> 과 <code class="language-text">두개의 독립된 변수를 조율</code> 하는 두가지 종류로 나뉜다고 한다. 이것은 최대한 클래스를 많이 분리하게 함으로써 응집도를 높이는 역할을 한다.</p>
 <h3 id="-이게-맞나-이렇게-하는게-맞아" style="position:relative;"><a href="#-%EC%9D%B4%EA%B2%8C-%EB%A7%9E%EB%82%98-%EC%9D%B4%EB%A0%87%EA%B2%8C-%ED%95%98%EB%8A%94%EA%B2%8C-%EB%A7%9E%EC%95%84" aria-label=" 이게 맞나 이렇게 하는게 맞아 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>🧨 이게 맞나…? 이렇게 하는게 맞아…?</h3>
 <p>사실 이 부분도 진짜 감이 안잡힌다.</p>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">class BenefitAmount {
-  constructor(props) {
-    ...
-  }
-}
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">BenefitAmount</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-#createBenefitObject({ order, event, totalAmount }) {
-  return new BenefitAmount({
-    order,
-    benefitList: event.getEvent(),
-    totalAmount,
-  });
-}</code>
-        </deckgo-highlight-code>
+<span class="token function">#createBenefitObject</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> order<span class="token punctuation">,</span> event<span class="token punctuation">,</span> totalAmount <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">BenefitAmount</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    order<span class="token punctuation">,</span>
+    <span class="token literal-property property">benefitList</span><span class="token operator">:</span> event<span class="token punctuation">.</span><span class="token function">getEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    totalAmount<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>기존에는 인자 3개였지만, 이 원칙을 보고 최대 2개로 수정하고자 여러번 코드를 뜯어보았다. 하지만 매번 실패하였고 오랜 고민 끝에 <code class="language-text">props</code> 로 인자를 묶어서 객체로 표현하였다. 생활체조 원칙도 지켜지고, 가독성 측면에서는 개선이 되었으나 아직까지 딱히 마음에 들지 않는다.</p>
 <p>인자를 2개만 받도록 계속 수정중이다…</p>
 <p><em>혹시 팁이 있으시다면… 댓글 남겨주시면 감사하겠습니다.</em></p>
@@ -243,55 +223,49 @@ class BenefitAmountManager {
 <p>우선 <strong>왜 Getter를 쓰면 안될까?</strong></p>
 <p>위에서 <strong>객체는 책임을 지게 해라!</strong> 라는 말을 기억하는가? 해당 객체에게 책임이 있으면 그 책임을 다른 객체에게 미루지 않고 본인이 시켜야 하는 것이다! 물론 그 말이 <strong>모든 코드에서 Getter를 쓰지 말아야 한다는 아닌 것으로 나는 이해했다.</strong> 지양하면 좋고, 없으면 더 좋다. 아예 안쓰는 방법도 분명 존재하겠지만 현재 나는 최대한 지양하는 방향 위에 서있다.(앞으로 학습하면서 안쓰는 날이 오지 않을까..? ㅎㅎ)</p>
 <p>아래 코드를 살펴보자.</p>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">// BenefitAmount
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// BenefitAmount</span>
 
-class BenefitAmount {
-  #benefitList;
+<span class="token keyword">class</span> <span class="token class-name">BenefitAmount</span> <span class="token punctuation">{</span>
+  #benefitList<span class="token punctuation">;</span>
 
-  getBenefitList() {
-    if (this.#totalAmount &lt; NUMBER.benefitStandard) this.#benefitList.fill(0);
-    return this.#benefitList;
-  }
+  <span class="token function">getBenefitList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>#totalAmount <span class="token operator">&lt;</span> <span class="token constant">NUMBER</span><span class="token punctuation">.</span>benefitStandard<span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span>#benefitList<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>#benefitList<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  getBenefitAmount() {
-    return this.#benefitList;
-  }
-}</code>
-        </deckgo-highlight-code>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">// PromotionController
+  <span class="token function">getBenefitAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>#benefitList<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// PromotionController</span>
 
-class PromotionController {
+<span class="token keyword">class</span> <span class="token class-name">PromotionController</span> <span class="token punctuation">{</span>
 
-  const benefitAmount = new BenefitAmount().getBenefitAmount();
+  <span class="token keyword">const</span> benefitAmount <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BenefitAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBenefitAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  return benefitAmount.reduce((acc, cost) =&gt; {
-      return acc + cost;
-  }, 0);</code>
-        </deckgo-highlight-code>
+  <span class="token keyword">return</span> benefitAmount<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">acc<span class="token punctuation">,</span> cost</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> acc <span class="token operator">+</span> cost<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>과연 위 코드가 객체 지향적인 코드일까? <code class="language-text">benefitAmount</code> 에서 맡을 수 있는 책임을 <code class="language-text">PromotionController</code> 에 전가하여 해당 컨트롤러에서 계산이 이루어지고 값을 반환한다. 위 코드는 객체의 책임, 자율성을 무시한 코드이다.</p>
 <h3 id="-해결-방안-3" style="position:relative;"><a href="#-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EC%95%88-3" aria-label=" 해결 방안 3 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>💎 해결 방안</h3>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">// BenefitAmount
-getBenefitList() {
-  if (this.#totalAmount &lt; NUMBER.benefitStandard) this.#benefitList.fill(0);
-  return this.#benefitList;
-}
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// BenefitAmount</span>
+<span class="token function">getBenefitList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>#totalAmount <span class="token operator">&lt;</span> <span class="token constant">NUMBER</span><span class="token punctuation">.</span>benefitStandard<span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span>#benefitList<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>#benefitList<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-getBenefitAmount() {
-  return this.getBenefitList().reduce((acc, cost) =&gt; {
-    return acc + cost;
-  }, 0);
-}
+<span class="token function">getBenefitAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getBenefitList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">acc<span class="token punctuation">,</span> cost</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> acc <span class="token operator">+</span> cost<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-// PromotionController
-return new BenefitAmount().getBenefitAmount();</code>
-        </deckgo-highlight-code>
+<span class="token comment">// PromotionController</span>
+<span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">BenefitAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBenefitAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <h2 id="reference" style="position:relative;"><a href="#reference" aria-label="reference permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reference</h2>
 <blockquote>
 <p><a href="https://hudi.blog/thoughtworks-anthology-object-calisthenics/">이유와 솔루션으로 정리하는 객체지향 생활체조 원칙</a></p>
 </blockquote>
 <blockquote>
 <p><a href="https://developerfarm.wordpress.com/2012/01/26/object_calisthenics_1/">더 나은 소프트웨어를 향한 9단계: 객체지향 생활 체조(1)</a></p>
-</blockquote></div></div><div class="post-navigator"><div class="post-navigator-card-wrapper"></div><div class="post-navigator-card-wrapper"><a class="post-card next" href="/StackQueueDeque/"><div class="direction">다음 글</div><div class="title">알고리즘 준비하기 - Stack Queue Deque</div></a></div></div><div class="utterances"></div></main><footer class="page-footer-wrapper"><p class="page-footer">© <!-- -->2023<!-- --> <a href="https://github.com/jaeochoii">재오</a> powered by<a href="https://github.com/jaeochoii/jaeochoii.github.io"> jaeochoii-gatsby-blog</a></p></footer><div class="dark-mode-button-wrapper"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium dark-mode-button css-1yxmbwk" tabindex="0" type="button"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge dark-mode-icon css-6flbmm" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DarkModeIcon"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"></path></svg></button></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/AfterPrecourse/";window.___webpackCompilationHash="d8fb0ecb1833db6bcd6e";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-f196834924f88edde8fc.js"],"app":["/app-3292d18dc0d13294ce49.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-12b5d8159c7e67968cd6.js"],"component---src-pages-404-js":["/component---src-pages-404-js-3b5896b19bbfe8ab0829.js"],"component---src-pages-about-js":["/component---src-pages-about-js-b2005de78d0a8a8601ae.js"],"component---src-pages-index-js":["/component---src-pages-index-js-9f9e5cde431881b573eb.js"],"component---src-templates-blog-template-js":["/component---src-templates-blog-template-js-09df47e9d7b8458608c9.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-59a8a406f384a880700f.js"]};/*]]>*/</script><script src="/polyfill-f196834924f88edde8fc.js" nomodule=""></script><script src="/app-3292d18dc0d13294ce49.js" async=""></script><script src="/framework-de157c6b30d4790e4e81.js" async=""></script><script src="/webpack-runtime-c265a5cb21b519c21a62.js" async=""></script></body></html>
+</blockquote></div></div><div class="post-navigator"><div class="post-navigator-card-wrapper"></div><div class="post-navigator-card-wrapper"><a class="post-card next" href="/StackQueueDeque/"><div class="direction">다음 글</div><div class="title">알고리즘 준비하기 - Stack Queue Deque</div></a></div></div><div class="utterances"></div></main><footer class="page-footer-wrapper"><p class="page-footer">© <!-- -->2023<!-- --> <a href="https://github.com/jaeochoii">재오</a> powered by<a href="https://github.com/jaeochoii/jaeochoii.github.io"> jaeochoii-gatsby-blog</a></p></footer><div class="dark-mode-button-wrapper"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium dark-mode-button css-1yxmbwk" tabindex="0" type="button"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge dark-mode-icon css-6flbmm" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DarkModeIcon"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"></path></svg></button></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/AfterPrecourse/";window.___webpackCompilationHash="a6d36ef6610f1535bc26";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-f196834924f88edde8fc.js"],"app":["/app-cd7b5c6a57aa1dc0a279.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-12b5d8159c7e67968cd6.js"],"component---src-pages-404-js":["/component---src-pages-404-js-3b5896b19bbfe8ab0829.js"],"component---src-pages-about-js":["/component---src-pages-about-js-b2005de78d0a8a8601ae.js"],"component---src-pages-index-js":["/component---src-pages-index-js-9f9e5cde431881b573eb.js"],"component---src-templates-blog-template-js":["/component---src-templates-blog-template-js-09df47e9d7b8458608c9.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-59a8a406f384a880700f.js"]};/*]]>*/</script><script src="/polyfill-f196834924f88edde8fc.js" nomodule=""></script><script src="/app-cd7b5c6a57aa1dc0a279.js" async=""></script><script src="/framework-de157c6b30d4790e4e81.js" async=""></script><script src="/webpack-runtime-c265a5cb21b519c21a62.js" async=""></script></body></html>

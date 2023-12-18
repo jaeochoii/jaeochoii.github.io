@@ -68,25 +68,23 @@
 <p>스택은 쉽게 생각하면 박스에 물건을 차곡차곡 정리하는 형태이다. 먼저 들어간 것이 밑에 위치하기 때문에 나중에 나오게 되고, 나중에 들어간 것이 맨 위에 위치하기 때문에 먼저 나오는 형태의 자료구조이다. 때문에 스택의 모든 연산은 스택의 최상단에서 일어난다. LIFO(Last In First Out)</p>
 <p>스택은 서로 관계가 있는 여러 작업을 연달아 수행하면서 <strong>이전의 작업 내용을 저장해 둘 필요가 있을 때</strong> 사용된다.</p>
 <h3 id="스택-구현-코드-js" style="position:relative;"><a href="#%EC%8A%A4%ED%83%9D-%EA%B5%AC%ED%98%84-%EC%BD%94%EB%93%9C-js" aria-label="스택 구현 코드 js permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>스택 구현 코드 (JS)</h3>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">class Stack {
-  constructor() {
-    this.arr = [];
-  }
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Stack</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  push(item) {
-    this.arr.push(item);
-  }
+  <span class="token function">push</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  pop(item) {
-    return this.arr.pop();
-  }
+  <span class="token function">pop</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  peek() {
-    return this.arr[this.arr.length - 1];
-  }
-}</code>
-        </deckgo-highlight-code>
+  <span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
 <h3 id="스택-시간복잡도" style="position:relative;"><a href="#%EC%8A%A4%ED%83%9D-%EC%8B%9C%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84" aria-label="스택 시간복잡도 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>스택 시간복잡도</h3>
 <ul>
 <li><strong>push</strong>: O(1)</li>
@@ -97,21 +95,19 @@
 <p>큐는 대기 줄을 생각하면 이해가 쉽다. 대기 줄에서는 먼저 들어온 사람이 먼저 나가듯 큐에서도 먼저 들어온 데이터가 먼저 나가고 나중에 들어온 데이터가 나중에 나가는 형태의 자료구조이다. 데이터의 삽입과 삭제가 큐의 양끝에서 각각 일어나므로 큐의 앞과 뒤를 명확하게 구분지을 필요가 있다. FIFO(First In First Out)</p>
 <p>큐는 <strong>순서대로 처리해야 하는 작업을 임시로 저장</strong>해두는 버퍼(buffer)로서 많이 사용된다.</p>
 <h3 id="큐-구현-코드-js" style="position:relative;"><a href="#%ED%81%90-%EA%B5%AC%ED%98%84-%EC%BD%94%EB%93%9C-js" aria-label="큐 구현 코드 js permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>큐 구현 코드 (JS)</h3>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">class Queue {
-  constructor() {
-    this.arr = [];
-  }
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Queue</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  enqueue(item) {
-    this.arr.push(item);
-  }
+  <span class="token function">enqueue</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  dequeue(item) {
-    return this.arr.shift();
-  }
-}</code>
-        </deckgo-highlight-code>
+  <span class="token function">dequeue</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
 <h3 id="큐-시간복잡도" style="position:relative;"><a href="#%ED%81%90-%EC%8B%9C%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84" aria-label="큐 시간복잡도 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>큐 시간복잡도</h3>
 <ul>
 <li><strong>push</strong>: O(1)</li>
@@ -126,35 +122,33 @@
 <blockquote>
 <p>shift 메서드는 0번째 위치의 요소를 제거하고 연이은 나머지 값들의 위치를 한칸씩 앞으로 당기기 때문에 시간복잡도가 O(N)이다. - MDN</p>
 </blockquote>
-<deckgo-highlight-code language="js" terminal="carbon" theme="one-dark" line-numbers="true"  >
-          <code slot="code">class Dequeue {
-  constructor() {
-    this.arr = [];
-    this.front = 0;
-    this.rear = 0;
-  }
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Dequeue</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>front <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>rear <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  pushFront(item){
-    if(this.arr[0]) {
-      for(let i=this.arr.length; i&gt;0; i--) {
-        this.arr[i] = this.arr[i - 1];
-      }
-    }
-    this.arr[this.front] = item;
-    this.rear += 1;
-  }
+  <span class="token function">pushFront</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>front<span class="token punctuation">]</span> <span class="token operator">=</span> item<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>rear <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  pushBack(item) {
-    this.arr[this.rear++] = item;
-  }
+  <span class="token function">pushBack</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>rear<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> item<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  popFront() {
-    const result = this.front &gt;= this.rear ? null : this.arr[this.front++];
-    return result;
-  }
+  <span class="token function">popFront</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>front <span class="token operator">>=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>rear <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>front<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  popBack() {
-    const result = this.head &gt;= this.rear ? null : this.arr[--this.rear];
-    return result;
-  }</code>
-        </deckgo-highlight-code></div></div><div class="post-navigator"><div class="post-navigator-card-wrapper"><a class="post-card prev" href="/AfterPrecourse/"><div class="direction">이전 글</div><div class="title">나의 코드는 얼마나 객체 지향적이었는가?</div></a></div><div class="post-navigator-card-wrapper"></div></div><div class="utterances"></div></main><footer class="page-footer-wrapper"><p class="page-footer">© <!-- -->2023<!-- --> <a href="https://github.com/jaeochoii">재오</a> powered by<a href="https://github.com/jaeochoii/jaeochoii.github.io"> jaeochoii-gatsby-blog</a></p></footer><div class="dark-mode-button-wrapper"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium dark-mode-button css-1yxmbwk" tabindex="0" type="button"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge dark-mode-icon css-6flbmm" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DarkModeIcon"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"></path></svg></button></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/StackQueueDeque/";window.___webpackCompilationHash="d8fb0ecb1833db6bcd6e";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-f196834924f88edde8fc.js"],"app":["/app-3292d18dc0d13294ce49.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-12b5d8159c7e67968cd6.js"],"component---src-pages-404-js":["/component---src-pages-404-js-3b5896b19bbfe8ab0829.js"],"component---src-pages-about-js":["/component---src-pages-about-js-b2005de78d0a8a8601ae.js"],"component---src-pages-index-js":["/component---src-pages-index-js-9f9e5cde431881b573eb.js"],"component---src-templates-blog-template-js":["/component---src-templates-blog-template-js-09df47e9d7b8458608c9.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-59a8a406f384a880700f.js"]};/*]]>*/</script><script src="/polyfill-f196834924f88edde8fc.js" nomodule=""></script><script src="/app-3292d18dc0d13294ce49.js" async=""></script><script src="/framework-de157c6b30d4790e4e81.js" async=""></script><script src="/webpack-runtime-c265a5cb21b519c21a62.js" async=""></script></body></html>
+  <span class="token function">popBack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">>=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>rear <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>arr<span class="token punctuation">[</span><span class="token operator">--</span><span class="token keyword">this</span><span class="token punctuation">.</span>rear<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre></div></div></div><div class="post-navigator"><div class="post-navigator-card-wrapper"><a class="post-card prev" href="/AfterPrecourse/"><div class="direction">이전 글</div><div class="title">나의 코드는 얼마나 객체 지향적이었는가?</div></a></div><div class="post-navigator-card-wrapper"></div></div><div class="utterances"></div></main><footer class="page-footer-wrapper"><p class="page-footer">© <!-- -->2023<!-- --> <a href="https://github.com/jaeochoii">재오</a> powered by<a href="https://github.com/jaeochoii/jaeochoii.github.io"> jaeochoii-gatsby-blog</a></p></footer><div class="dark-mode-button-wrapper"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium dark-mode-button css-1yxmbwk" tabindex="0" type="button"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge dark-mode-icon css-6flbmm" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DarkModeIcon"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"></path></svg></button></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/StackQueueDeque/";window.___webpackCompilationHash="a6d36ef6610f1535bc26";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-f196834924f88edde8fc.js"],"app":["/app-cd7b5c6a57aa1dc0a279.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-12b5d8159c7e67968cd6.js"],"component---src-pages-404-js":["/component---src-pages-404-js-3b5896b19bbfe8ab0829.js"],"component---src-pages-about-js":["/component---src-pages-about-js-b2005de78d0a8a8601ae.js"],"component---src-pages-index-js":["/component---src-pages-index-js-9f9e5cde431881b573eb.js"],"component---src-templates-blog-template-js":["/component---src-templates-blog-template-js-09df47e9d7b8458608c9.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-59a8a406f384a880700f.js"]};/*]]>*/</script><script src="/polyfill-f196834924f88edde8fc.js" nomodule=""></script><script src="/app-cd7b5c6a57aa1dc0a279.js" async=""></script><script src="/framework-de157c6b30d4790e4e81.js" async=""></script><script src="/webpack-runtime-c265a5cb21b519c21a62.js" async=""></script></body></html>
